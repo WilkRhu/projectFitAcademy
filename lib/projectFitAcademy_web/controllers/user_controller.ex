@@ -3,6 +3,7 @@ defmodule ProjectFitAcademyWeb.UserController do
 
   alias ProjectFitAcademy.Users
   alias ProjectFitAcademy.Users.User
+  alias ProjectFitAcademyWeb.UploadController
 
   def index(conn, _params) do
     users = Users.list_users()

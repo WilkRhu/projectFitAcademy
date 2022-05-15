@@ -21,6 +21,11 @@ defmodule ProjectFitAcademyWeb.Router do
     resources "/users", UserController
   end
 
+  scope "/", ProjectFitAcademyWeb do
+    pipe_through :browser
+
+    resources "/uploads", UploadController
+  end
   # Other scopes may use custom stacks.
   # scope "/api", ProjectFitAcademyWeb do
   #   pipe_through :api

@@ -2,6 +2,7 @@ import Config
 
 # Configure your database
 config :projectFitAcademy, ProjectFitAcademy.Repo,
+  uploads_directory: "/Users/alvise/uploads_dev",
   username: "postgres",
   password: "1234",
   hostname: "localhost",

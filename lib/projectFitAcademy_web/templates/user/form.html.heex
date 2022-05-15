@@ -14,15 +14,15 @@
             <% end %>
 
             <%= label f, :name %>
-            <%= text_input f, :name, class: "form-control" %>
+            <%= text_input f, :name, class: "form-control", id: "name" %>
             <%= error_tag f, :name %>
 
             <%= label f, :email %>
-            <%= text_input f, :email, class: "form-control" %>
+            <%= text_input f, :email, class: "form-control", id: "email" %>
             <%= error_tag f, :email %>
 
             <%= label f, :password %>
-            <%= password_input f, :password, class: "form-control"  %>
+            <%= password_input f, :password, class: "form-control" %>
             <%= error_tag f, :password %>
 
 
@@ -47,7 +47,8 @@
                 <img class="avatar border-gray" id="preview" src="../assets/img/avatar-generico.png" alt="...">
               </a>
               <p class="description">
-                <%= file_input f, :avatar, class: "form-control", name: "imagem", id: "img-input" %>
+
+                <%= file_input f, :avatar, class: "form-control", name: "av", id: "img-input" %>
                 <%= error_tag f, :avatar %>
               </p>
             </div>
@@ -72,5 +73,27 @@
     }
 
     document.getElementById("img-input").addEventListener("change", readImage, false);
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("form").submit(function (event) {
+        const formData = {
+          name: $("#name").val(),
+          email: $("#email").val(),
+        };
+
+       $.ajax({
+          type: "POST",
+          url: "/uploads",
+          data: formData,
+          dataType: "json",
+          encode: true,
+        }).done(function (data) {
+          console.log(data);
+        });
+
+        event.preventDefault();
+      });
+    });
   </script>
 </.form>
