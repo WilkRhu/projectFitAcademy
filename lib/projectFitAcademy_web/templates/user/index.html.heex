@@ -1,0 +1,44 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead class=" text-primary">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Police</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for user <- @users do %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.password %></td>
+        <td><%= user.police %></td>
+
+        <td>
+          <span>
+            <%= link to: Routes.user_path(@conn, :show, user) do %>
+              <i class="now-ui-icons users_single-02" alt="Show User"></i>
+            <% end %>
+          </span>
+          <span>
+            <%= link to: Routes.user_path(@conn, :edit, user) do %>
+            <i class="now-ui-icons design-2_ruler-pencil" alt="Edit User"></i>
+            <% end %>
+          </span>
+          <span>
+            <%= link  to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] do %>
+            <i class="now-ui-icons ui-1_simple-remove" alt="Delete User"></i>
+            <% end %>
+          </span>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <span><%= link("Create New User", to: Routes.user_path(@conn, :new), class: "btn btn-primary") %></span>
+</div>

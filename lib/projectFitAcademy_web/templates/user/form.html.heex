@@ -1,0 +1,76 @@
+<.form let={f} for={@changeset} action={@action} multipart={true}>
+  <div class="content">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="title">Create New User</h5>
+          </div>
+          <div class="card-body form-group" style="margin: 0 auto">
+            <%= if @changeset.action do %>
+            <div class="alert alert-danger">
+              <p>Oops, something went wrong! Please check the errors below.</p>
+            </div>
+            <% end %>
+
+            <%= label f, :name %>
+            <%= text_input f, :name, class: "form-control" %>
+            <%= error_tag f, :name %>
+
+            <%= label f, :email %>
+            <%= text_input f, :email, class: "form-control" %>
+            <%= error_tag f, :email %>
+
+            <%= label f, :password %>
+            <%= password_input f, :password, class: "form-control"  %>
+            <%= error_tag f, :password %>
+
+
+            <%= label f, :police %>
+            <%= select f, :police, [:Admin, :Supervisor, :Teacher, :Students], class: "form-control col-md-6" %>
+            <%= error_tag f, :police %>
+
+            <%= submit "Save", class: "btn btn-primary col-md-10 center"%>
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-user">
+          <div class="image">
+            <img src="../assets/img/bg5.jpg" alt="...">
+          </div>
+          <div class="card-body">
+            <div class="author">
+              <a href="#">
+                <img class="avatar border-gray" id="preview" src="../assets/img/avatar-generico.png" alt="...">
+              </a>
+              <p class="description">
+                <%= file_input f, :avatar, class: "form-control", name: "imagem", id: "img-input" %>
+                <%= error_tag f, :avatar %>
+              </p>
+            </div>
+          </div>
+          <hr>
+          <div class="button-container">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function readImage() {
+      if (this.files && this.files[0]) {
+        var file = new FileReader();
+        file.onload = function (e) {
+          document.getElementById("preview").src = e.target.result;
+        };
+        file.readAsDataURL(this.files[0]);
+      }
+    }
+
+    document.getElementById("img-input").addEventListener("change", readImage, false);
+  </script>
+</.form>
