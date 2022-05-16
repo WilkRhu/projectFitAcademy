@@ -24,6 +24,7 @@ config :projectFitAcademy, ProjectFitAcademyWeb.Endpoint,
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "985XFBqkS9r7kOyQJTLbnKJmH+C749h3GjFanVQm3sscNTTCZigvRwvRw76YiX46",
+  uploads_directory: "priv/static/media",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}

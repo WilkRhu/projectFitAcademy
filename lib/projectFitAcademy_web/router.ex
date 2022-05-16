@@ -19,7 +19,9 @@ defmodule ProjectFitAcademyWeb.Router do
 
     get "/", PageController, :index
     resources "/users", UserController
+    resources "/uploads", UploadController, only: [:create, :show]
   end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", ProjectFitAcademyWeb do

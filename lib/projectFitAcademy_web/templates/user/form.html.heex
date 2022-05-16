@@ -1,7 +1,7 @@
 <.form let={f} for={@changeset} action={@action} multipart={true}>
   <div class="content">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header">
             <h5 class="title">Create New User</h5>
@@ -14,63 +14,34 @@
             <% end %>
 
             <%= label f, :name %>
-            <%= text_input f, :name, class: "form-control" %>
+            <%= text_input f, :name, class: "form-control", id: "name" %>
             <%= error_tag f, :name %>
 
             <%= label f, :email %>
-            <%= text_input f, :email, class: "form-control" %>
+            <%= text_input f, :email, class: "form-control", id: "email" %>
             <%= error_tag f, :email %>
 
             <%= label f, :password %>
-            <%= password_input f, :password, class: "form-control"  %>
+            <%= password_input f, :password, class: "form-control" %>
             <%= error_tag f, :password %>
+            <div class="col-md-6 left" style="margin-bottom: 20px; padding-left:0;">
+              <%= label f, :police %>
+              <%= select f, :police, [:"", :Admin, :Supervisor, :Teacher, :Students], class: "form-control" %>
+              <%= error_tag f, :police %>
+            </div>
+            <div class="col-md-6 right" style="margin-bottom: 20px; padding-right:0;">
+              <%= label f, :gender %>
+              <%= select f, :gender, [:"", :Feminine, :Male], class: "form-control" %>
+              <%= error_tag f, :gender %>
+            </div>
 
 
-            <%= label f, :police %>
-            <%= select f, :police, [:Admin, :Supervisor, :Teacher, :Students], class: "form-control col-md-6" %>
-            <%= error_tag f, :police %>
-
-            <%= submit "Save", class: "btn btn-primary col-md-10 center"%>
+            <%= submit "Save", class: "btn btn-primary col-md-12"%>
             <div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card card-user">
-          <div class="image">
-            <img src="../assets/img/bg5.jpg" alt="...">
-          </div>
-          <div class="card-body">
-            <div class="author">
-              <a href="#">
-                <img class="avatar border-gray" id="preview" src="../assets/img/avatar-generico.png" alt="...">
-              </a>
-              <p class="description">
-                <%= file_input f, :avatar, class: "form-control", name: "imagem", id: "img-input" %>
-                <%= error_tag f, :avatar %>
-              </p>
-            </div>
-          </div>
-          <hr>
-          <div class="button-container">
-
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-  <script type="text/javascript">
-    function readImage() {
-      if (this.files && this.files[0]) {
-        var file = new FileReader();
-        file.onload = function (e) {
-          document.getElementById("preview").src = e.target.result;
-        };
-        file.readAsDataURL(this.files[0]);
-      }
-    }
-
-    document.getElementById("img-input").addEventListener("change", readImage, false);
-  </script>
 </.form>

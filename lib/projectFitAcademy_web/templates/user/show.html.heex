@@ -1,21 +1,57 @@
-<ul>
+<div class="content">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-user">
+        <div class="image">
+          <img src="../assets/img/bg5.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <div class="author">
+            <a href="#">
+              <%= if @user.gender === :Male do %>
+              <img class="avatar border-gray" id="preview" src="../assets/img/avatar-male.jpeg" alt="...">
+              <% else %>
+              <img class="avatar border-gray" id="preview" src="../assets/img/avatar-generico.png" alt="...">
+              <% end %>
+            </a>
+            <p class="description">
+            </p>
+          </div>
+          <h5 class="title"><%= @user.name %></h5>
+          <ul class="description">
+            <li>
+              <strong>Email:</strong>
+              <%= @user.email %>
+            </li>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @user.name %>
-  </li>
+            <li>
+              <strong>Police:</strong>
+              <%= @user.police %>
+            </li>
+            <li>
+              <strong>Gender:</strong>
+              <%= @user.gender %>
+            </li>
+          </ul>
 
-  <li>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </li>
+          <span><%= link "Edit", to: Routes.user_path(@conn, :edit, @user) %></span> |
+          <span><%= link "Back", to: Routes.user_path(@conn, :index) %></span>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function readImage() {
+      if (this.files && this.files[0]) {
+        var file = new FileReader();
+        file.onload = function (e) {
+          document.getElementById("preview").src = e.target.result;
+        };
+        file.readAsDataURL(this.files[0]);
+      }
+    }
 
-  <li>
-    <strong>Police:</strong>
-    <%= @user.police %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.user_path(@conn, :edit, @user) %></span> |
-<span><%= link "Back", to: Routes.user_path(@conn, :index) %></span>
+    document.getElementById("img-input").addEventListener("change", readImage, false);
+  </script>
+</div>

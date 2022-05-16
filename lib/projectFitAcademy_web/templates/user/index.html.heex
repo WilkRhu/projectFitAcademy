@@ -1,44 +1,58 @@
-<div class="table-responsive">
-  <table class="table">
-    <thead class=" text-primary">
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Police</th>
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">List User</h5>
+        </div>
+        <div class="card-body form-group" style="margin: 0 auto">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-primary">
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Police</th>
 
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= for user <- @users do %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.password %></td>
-        <td><%= user.police %></td>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= for user <- @users do %>
+                <tr>
+                  <td><%= user.name %></td>
+                  <td><%= user.email %></td>
+                  <td><%= user.police %></td>
 
-        <td>
-          <span>
-            <%= link to: Routes.user_path(@conn, :show, user) do %>
-              <i class="now-ui-icons users_single-02" alt="Show User"></i>
-            <% end %>
-          </span>
-          <span>
-            <%= link to: Routes.user_path(@conn, :edit, user) do %>
-            <i class="now-ui-icons design-2_ruler-pencil" alt="Edit User"></i>
-            <% end %>
-          </span>
-          <span>
-            <%= link  to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] do %>
-            <i class="now-ui-icons ui-1_simple-remove" alt="Delete User"></i>
-            <% end %>
-          </span>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+                  <td>
+                    <span class="spanedit">
+                      <%= link to: Routes.user_path(@conn, :show, user) do %>
+                      <label>Show User</label>
+                      <i class="now-ui-icons users_single-02" alt="Show User"></i>
+                      <% end %>
+                    </span>
+                    <span class="spanedit">
+                      <%= link to: Routes.user_path(@conn, :edit, user) do %>
+                      <label>Edit User</label>
+                      <i class="now-ui-icons design-2_ruler-pencil" alt="Edit User"></i>
+                      <% end %>
+                    </span>
+                    <span>
+                      <%= link  to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] do %>
+                      <label>Delete User</label>
+                      <i class="now-ui-icons ui-1_simple-remove" alt="Delete User"></i>
+                      <% end %>
+                    </span>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
 
-  <span><%= link("Create New User", to: Routes.user_path(@conn, :new), class: "btn btn-primary") %></span>
+            <span><%= link("Create New User", to: Routes.user_path(@conn, :new), class: "btn btn-primary") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

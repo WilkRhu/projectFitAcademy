@@ -3,3 +3,13 @@
 <%= render "form.html", Map.put(assigns, :action, Routes.user_path(@conn, :update, @user)) %>
 
 <span><%= link "Back", to: Routes.user_path(@conn, :index) %></span>
+
+<%= form_for @conn, Routes.upload_path(@conn, :create), 
+[multipart: true], fn f-> %>
+
+<%= file_input f, :upload, class: "form-control", id: "img-input" %>
+<%= text_input f, :user_id, class: "form-control", value: @user.id, id: "input-none" %>
+<%= submit "Upload", class: "btn btn-primary" %>
+
+<% end %>
+
