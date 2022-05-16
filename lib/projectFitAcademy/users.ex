@@ -7,6 +7,7 @@ defmodule ProjectFitAcademy.Users do
   alias ProjectFitAcademy.Repo
 
   alias ProjectFitAcademy.Users.User
+  alias ProjectFitAcademy.Documents.Upload
 
   @doc """
   Returns the list of users.

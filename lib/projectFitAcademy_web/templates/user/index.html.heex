@@ -8,7 +8,7 @@
         <div class="card-body form-group" style="margin: 0 auto">
           <div class="table-responsive">
             <table class="table">
-              <thead class=" text-primary">
+              <thead class="text-primary">
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
@@ -25,18 +25,21 @@
                   <td><%= user.police %></td>
 
                   <td>
-                    <span>
+                    <span class="spanedit">
                       <%= link to: Routes.user_path(@conn, :show, user) do %>
+                      <label>Show User</label>
                       <i class="now-ui-icons users_single-02" alt="Show User"></i>
                       <% end %>
                     </span>
-                    <span>
+                    <span class="spanedit">
                       <%= link to: Routes.user_path(@conn, :edit, user) do %>
+                      <label>Edit User</label>
                       <i class="now-ui-icons design-2_ruler-pencil" alt="Edit User"></i>
                       <% end %>
                     </span>
                     <span>
                       <%= link  to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] do %>
+                      <label>Delete User</label>
                       <i class="now-ui-icons ui-1_simple-remove" alt="Delete User"></i>
                       <% end %>
                     </span>

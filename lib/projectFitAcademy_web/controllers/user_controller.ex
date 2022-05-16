@@ -3,7 +3,8 @@ defmodule ProjectFitAcademyWeb.UserController do
 
   alias ProjectFitAcademy.Users
   alias ProjectFitAcademy.Users.User
-  alias ProjectFitAcademyWeb.UploadController
+  alias ProjectFitAcademy.Documents.Upload
+
 
   def index(conn, _params) do
     users = Users.list_users()
@@ -15,6 +16,8 @@ defmodule ProjectFitAcademyWeb.UserController do
     render(conn, "new.html", changeset: changeset)
   end
 
+  
+  
   def create(conn, %{"user" => user_params}) do
     case Users.create_user(user_params) do
       {:ok, user} ->

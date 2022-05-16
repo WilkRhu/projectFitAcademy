@@ -16,8 +16,8 @@ defmodule ProjectFitAcademy.Documents.Upload do
   @doc false
   def changeset(upload, attrs) do
     upload
-    |> cast(attrs, [:filename, :size, :content_type, :hash])
-    |> validate_required([:filename, :size, :content_type, :hash])
+    |> cast(attrs, [:filename, :size, :content_type, :hash, :user_id])
+    |> validate_required([:filename, :size, :content_type, :hash, :user_id])
 
     # added validations
     |> validate_number(:size, greater_than: 0) #doesn't allow empty files
@@ -25,11 +25,23 @@ defmodule ProjectFitAcademy.Documents.Upload do
   end
 
   def upload_directory do
-    Application.get_env(:poetic, :uploads_directory)
+    Application.get_env(:projectFitAcademy, :uploads_directory)
   end
   
-  def loacal_path(id, filename) do
-    [upload_directory(), "#{id}-#{filename}"]
+  def local_path(id, filename) do
+    ["priv/static/media", "#{id}-#{filename}"]
     |> Path.join()
   end
+
+  def sha256(chunks_enum) do
+    chunks_enum
+    |> Enum.reduce(
+        :crypto.hash_init(:sha256),
+        &(:crypto.hash_update(&2, &1))
+    ) 
+    |> :crypto.hash_final()
+    |> Base.encode16()
+    |> String.downcase()
+  end
+  
 end

@@ -11,7 +11,7 @@ import Config
 # before starting your production server.
 config 
 :projectFitAcademy, 
-uploads_directory: System.get_env("POETIC_UPLOADS_DIRECTORY") || "/uploads"
+uploads_directory: System.get_env("POETIC_UPLOADS_DIRECTORY") || "/media",
 ProjectFitAcademyWeb.Endpoint, 
 cache_static_manifest: "priv/static/cache_manifest.json"
 

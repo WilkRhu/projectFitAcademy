@@ -19,13 +19,10 @@ defmodule ProjectFitAcademyWeb.Router do
 
     get "/", PageController, :index
     resources "/users", UserController
+    resources "/uploads", UploadController, only: [:create, :show]
   end
 
-  scope "/", ProjectFitAcademyWeb do
-    pipe_through :browser
 
-    resources "/uploads", UploadController
-  end
   # Other scopes may use custom stacks.
   # scope "/api", ProjectFitAcademyWeb do
   #   pipe_through :api
